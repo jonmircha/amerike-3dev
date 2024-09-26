@@ -4,6 +4,10 @@ En este repositorio encontraremos los códigos realizados en la materia _**Progr
 
 En esta clase estamos aprendiendo a crear etiquetas.
 
+Esta es la _url_ de mi repositorio en el servicio de _GitHub Pages_.
+
+[https://jonmircha.github.io/amerike-3dev/](https://jonmircha.github.io/amerike-3dev/)
+
 ## Apuntes y Cursos
 
 - _Visual Studio Code_
