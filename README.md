@@ -2,8 +2,6 @@
 
 En este repositorio encontraremos los códigos realizados en la materia _**Programación en Lenguajes Interpretados**_ del tercer semestre de la carrera de _**DEVs**_ de _**AMERIKE**_.
 
-En esta clase estamos aprendiendo a crear etiquetas.
-
 Esta es la _url_ de mi repositorio en el servicio de _GitHub Pages_.
 
 [https://jonmircha.github.io/amerike-3dev/](https://jonmircha.github.io/amerike-3dev/)
@@ -29,4 +27,4 @@ Esta es la _url_ de mi repositorio en el servicio de _GitHub Pages_.
 
 ## Prácticas
 
-- [Práctica 1](./practica-01.md)
+- [Práctica 1](./git-github/practica-01.md)
