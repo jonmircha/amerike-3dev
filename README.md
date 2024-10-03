@@ -11,17 +11,21 @@ Esta es la _url_ de mi repositorio en el servicio de _GitHub Pages_.
 ## Apuntes y Cursos
 
 - _Visual Studio Code_
-  - [Artículo](https://jonmircha.com/vscode).
-  - [Video](https://www.youtube.com/watch?v=KpgVF0mXOUs).
+  - [Artículo](https://jonmircha.com/vscode)
+  - [Video](https://www.youtube.com/watch?v=KpgVF0mXOUs)
 - Terminal de Comandos
-  - [Artículo](https://jonmircha.com/terminal).
-  - [Video](https://www.youtube.com/watch?v=Pi0KVD4xTbc).
+  - [Artículo](https://jonmircha.com/terminal)
+  - [Video](https://www.youtube.com/watch?v=Pi0KVD4xTbc)
 - _Markdown_
-  - [Artículo](https://jonmircha.com/markdown).
-  - [Video](https://www.youtube.com/watch?v=FlsoBiteuPM).
+  - [Artículo](https://jonmircha.com/markdown)
+  - [Video](https://www.youtube.com/watch?v=FlsoBiteuPM)
 - _Git & GitHub_
-  - [Artículo](https://jonmircha.com/git).
-  - [Video](https://www.youtube.com/watch?v=suzMNqDQiyU).
+  - [Artículo](https://jonmircha.com/git)
+  - [Video](https://www.youtube.com/watch?v=suzMNqDQiyU)
+- Programación Web
+  - [Hablemos de Programación](https://jonmircha.com/programacion)
+  - [Guía _HTML & CSS_](https://jonmircha.com/html)
+  - [Cursos Básicos de la _Web_](https://www.youtube.com/playlist?list=PLvq-jIkSeTUZ7FtDshwPGlZoLSWyR5ryt)
 
 ## Prácticas
 
