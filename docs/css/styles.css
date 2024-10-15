@@ -1,4 +1,51 @@
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
+
+:root {
+  --color-bg: #222;
+  --color-text: #eee;
+  --font-headings: "Permanent Marker", cursive;
+  --font-body: "Raleway", sans-serif;
+  --font-size-html: 16px;
+}
+
+html {
+  font-size: var(--font-size-html);
+}
+
 body {
   background-color: black;
   color: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-headings);
+}
+
+h2 {
+  color: #ff0000;
+  color: #00ff00;
+  color: #00f;
+  color: #ff0;
+}
+
+h3 {
+  color: rgb(186, 35, 196);
+  color: rgba(186, 35, 196, 0.5);
+}
+
+img {
+  max-width: 100%;
+}
+
+li {
+  font-size: 1.5rem;
 }
