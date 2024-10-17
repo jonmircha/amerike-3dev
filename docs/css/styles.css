@@ -21,6 +21,15 @@ body {
   font-family: var(--font-body);
 }
 
+a {
+  color: orangered;
+  transition: all 0.5s ease-in-out;
+}
+
+a:hover {
+  color: white;
+}
+
 h1,
 h2,
 h3,
@@ -48,4 +57,93 @@ img {
 
 li {
   font-size: 1.5rem;
+}
+
+#titulo-html {
+  background-color: orangered;
+  color: skyblue;
+  text-align: center;
+}
+
+#jon-img {
+  transition: all 3s ease;
+}
+
+#jon-img:hover {
+  width: 200px;
+  height: 200px;
+  transform: rotate(360deg);
+  filter: blur(8px);
+}
+
+.bg-red {
+  background-color: red;
+}
+
+.bg-green {
+  background-color: green;
+}
+
+.bg-blue {
+  background-color: blue;
+}
+
+.gradient-blue-pink {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    144deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(37, 100, 121, 1) 27%,
+    rgba(171, 75, 158, 1) 48%,
+    rgba(122, 205, 233, 1) 74%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
+
+.text-khaki {
+  color: khaki;
+}
+
+.text-pink {
+  color: pink;
+}
+
+.text-magenta {
+  color: magenta;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.font-24 {
+  font-size: 24px;
+}
+
+.font-16 {
+  font-size: 16px;
+}
+
+.font-12 {
+  font-size: 12px;
+}
+
+.rounded {
+  border-radius: 100%;
+}
+
+.w-100 {
+  width: 100px;
+}
+
+.h-100 {
+  height: 100px;
 }
