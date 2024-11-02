@@ -28,3 +28,4 @@ Esta es la _url_ de mi repositorio en el servicio de _GitHub Pages_.
 ## Prácticas
 
 - [Práctica 1](./git-github/practica-01.md)
+- [Práctica 15](https://jonmircha.github.io/amerike-3dev/practica-15.html)
