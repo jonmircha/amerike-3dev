@@ -12,6 +12,7 @@ Lista de documentos:
 - [Teoría _Git_](https://jonmircha.com/git)
 - [Hablemos de Programación](https://jonmircha.com/programacion)
 - [Hablemos de Inteligencia Artificial](./mds/IA.md)
+- [Teoría _HTML & CSS_](https://jonmircha.com/html)
 
 A continuación vamos a ver lo que son las etiquetas
 
