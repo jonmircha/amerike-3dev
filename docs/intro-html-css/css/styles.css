@@ -1,9 +1,94 @@
 /* Esto es un comentario en CSS */
-/* body {
+:root {
+  --color-main: #f60;
+  --font-main: Arial;
+  --color-secondary: navy;
+  font-size: 16px;
+}
+
+body {
   background-color: black;
   color: white;
+  font-family: var(--font-main);
+}
+
+a {
+  color: yellowgreen;
+}
+
+a:hover {
+  color: skyblue;
 }
 
 h1 {
   color: red;
-} */
+}
+
+h1:hover {
+  color: orange;
+}
+
+h2 {
+  color: var(--color-main);
+}
+
+li {
+  color: var(--color-secondary);
+}
+
+img,
+iframe {
+  max-width: 100%;
+}
+
+#explicando-unidades {
+  background-color: yellow;
+  color: #f00;
+  padding: 1.5rem;
+  margin: 1rem;
+  margin-bottom: 3rem;
+  width: 50%;
+  height: 50vh;
+  border: 5px solid red;
+}
+
+#otra-div {
+  background-color: pink;
+  color: magenta;
+}
+
+.font-12 {
+  font-size: 12px;
+}
+
+.font-16 {
+  font-size: 16px;
+}
+
+.font-20 {
+  font-size: 20px;
+}
+
+.text-red {
+  color: red;
+}
+
+.text-blue {
+  color: blue;
+}
+
+.text-green {
+  color: green;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
