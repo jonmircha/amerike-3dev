@@ -13,6 +13,7 @@ Lista de documentos:
 - [Hablemos de Programación](https://jonmircha.com/programacion)
 - [Hablemos de Inteligencia Artificial](./mds/IA.md)
 - [Teoría _HTML & CSS_](https://jonmircha.com/html)
+- [Teoría _JavaScript_](./intro-js.md)
 
 A continuación vamos a ver lo que son las etiquetas
 
