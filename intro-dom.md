@@ -77,6 +77,7 @@ const $paleGreenItems = document.querySelectorAll(".bg-palegreen ");
 console.log($paragraphs);
 console.log($paragraphs.length);
 console.log($paragraphs[3]);
+console.log($paleGreenItems);
 console.log($paleGreenItems.length);
 console.log($paleGreenItems[0]);
 ```
