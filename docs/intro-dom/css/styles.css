@@ -1,0 +1,73 @@
+* {
+  box-sizing: border-box;
+}
+
+p {
+  color: red;
+}
+
+#ball {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: orangered;
+}
+
+#color-list li {
+  cursor: pointer;
+}
+
+#dom-insert {
+  border: thin solid red;
+  padding: 1rem;
+}
+
+#languages {
+  border: thin solid blue;
+  padding: 1rem 2rem;
+  background-color: skyblue;
+}
+
+.text-black {
+  color: black;
+}
+
+.text-white {
+  color: white;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.bg-palegreen {
+  background-color: palegreen;
+}
+
+.bg-skyblue {
+  background-color: skyblue;
+}
+
+.fs-8 {
+  font-size: 8px;
+}
+
+.fs-12 {
+  font-size: 12px;
+}
+
+.fs-16 {
+  font-size: 16px;
+}
+
+.fs-20 {
+  font-size: 20px;
+}
