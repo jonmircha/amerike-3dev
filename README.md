@@ -14,6 +14,7 @@ Lista de documentos:
 - [Hablemos de Inteligencia Artificial](./mds/IA.md)
 - [Teoría _HTML & CSS_](https://jonmircha.com/html)
 - [Teoría _JavaScript_](./intro-js.md)
+- [Teoría _DOM_](./intro-dom.md)
 
 A continuación vamos a ver lo que son las etiquetas
 
