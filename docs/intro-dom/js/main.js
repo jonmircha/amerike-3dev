@@ -154,3 +154,76 @@ languages.forEach((el) => {
 
 // Elimina un elemento del DOM
 $languagesList.firstElementChild.remove();
+
+const $btnPushMe = document.querySelector("#push-me");
+
+$btnPushMe.addEventListener("click", function (e) {
+  alert("¡Has pulsado el botón!");
+  // El objeto event (e) contiene información sobre el evento que se ha producido
+  console.log(e);
+  // La propiedad type nos indica el tipo de evento que se ha producido
+  console.log(e.type);
+  // La propiedad target nos indica el elemento que ha disparado el evento
+  console.log(e.target);
+
+  e.target.textContent = "Me has presionado 👊🏻😎";
+
+  setTimeout(() => {
+    e.target.textContent = "Púlsame 🤗";
+  }, 3000);
+});
+
+const $ball = document.querySelector("#ball");
+let x = 0;
+let y = 0;
+let speed = 10;
+
+document.addEventListener("keydown", (e) => {
+  console.log(e);
+  console.log(e.type);
+  // La propiedad key nos indica la tecla que se ha pulsado
+  console.log(e.key);
+  // La propiedad code nos indica el código de la tecla que se ha pulsado
+  console.log(e.code);
+
+  // Previene la acción por defecto del evento
+  e.preventDefault();
+
+  switch (e.key) {
+    case "ArrowUp":
+      y -= speed;
+      break;
+    case "ArrowDown":
+      y += speed;
+      break;
+    case "ArrowLeft":
+      x -= speed;
+      break;
+    case "ArrowRight":
+      x += speed;
+      break;
+  }
+
+  // La función requestAnimationFrame nos permite ejecutar una función antes de que se realice el repintado de la pantalla
+  requestAnimationFrame(() => {
+    $ball.style.transform = `translate(${x}px, ${y}px)`;
+  });
+});
+
+// Delegación de eventos
+// El evento se delega al document y no a cada una de las etiquetas li del id another-list
+document.addEventListener("click", (e) => {
+  // Sólo cuando el elemento coincida con el selector indicado, se ejecutará el código
+  if (e.target.matches("#color-list li")) {
+    console.log(e.target);
+    console.log(e.target.textContent);
+    document.body.style.backgroundColor = e.target.textContent;
+  }
+
+  if (e.target.matches("p")) {
+    alert("Soy un párrafo");
+  }
+
+  // En cualquier otro caso, no se ejecutará el evento
+  return false;
+});
