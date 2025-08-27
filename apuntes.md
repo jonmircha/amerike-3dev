@@ -46,6 +46,12 @@ El siguiente comando nos ayuda a visualizar el estado de seguimiento de los arch
 git status
 ```
 
+El siguiente comando nos ayuda a ver el _log_ del historial de cambios del repositorio:
+
+```bash
+git log
+```
+
 ### Flujo básico de _Git & GitHub_
 
 ![Flujo básico de Git y GitHub](https://jonmircha.com/img/blog/git-flow.png)
