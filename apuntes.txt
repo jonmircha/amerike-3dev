@@ -1,0 +1,27 @@
+Comandos Básicos de Terminal
+
+pwd - Imprime la ruta del directorio actual (print working directory)
+ls - lista los directorios y archivos del directorio donde esta la terminal
+ls - l lista detalles de los directorios y archicos
+ls -a lista todo tipo de directorio y archivos (incluye los ocultos)
+ls -la combinación de ambas flags
+clear - limpiar la panralla del terminal
+cd: para cambiarnos de directorio
+  . desde la ubicación donde estoy
+  .. desde la ubicación donde estoy sube un nivel
+  ~ es un comodín que nos ubica en la carpeta del home del usuario de la sesión actual
+  / es un comodín que nos ubica en la carpeta raíz (root) del equipo de computo
+mkdir - crea un directorio
+touch archivo.txt - crea un archivo del tipo que le indiquemos
+rm - eliminar archivos
+rm -r - eliminar directorios
+cp ruta-actual ruta-nueva - copiar archivos
+mv ruta-actual ruta-nueva - mover archivos
+
+Atajos de VS Code
+
+ctrl + j - Abre la terminal en el editor
+
+alt + shift + ⬆︎ o ⬇︎ - duplica líneas de código
+
+alt + shift + a - comentarios en VS Code
