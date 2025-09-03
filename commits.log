@@ -1,0 +1,23 @@
+*   fbba338 Resolviendo conflictos de fusion con rama js
+|\  
+| * 890a7aa Agregando lista de viñetas al index
+* | 5a12f19 Agregando lista de numeros al index
+* | a81be13 Merge branch 'js'
+|\| 
+| * 1536b98 Modificando html desde la rama js
+* | cd15120 Fusionando rama  'js'
+|\| 
+| * 3cb9645 Modificando index.html en la rama js
+| * fe63cb7 Creando archivo main.js en la rama js
+* |   f466b69 Fusionando rama 'css'
+|\ \  
+| * | 3cd79af Creando hoja styles.css
+* | | 0167ee5 Agregando código necesario para incluir archivos css y js
+| |/  
+|/|   
+* | 14a9d3f Escribiendo contenido en el index.html
+* | 88e98dc Creando documento index.html en la rama html
+|/  
+* 5aa3455 Agregando archivo README
+* a8e6b49 Agregando el comando log a mis apuntes
+* 4a0466f Primer cambio
