@@ -5,3 +5,5 @@ Bienvenid@s al repositorio de _GitHub_ de la materia _Programación en Lenguajes
 En este enlace encuentras los [apuntes](./apuntes.md) de la materia.
 
 Vamos a revisar como crear etiquetas en nuestro proyecto, vamos a crear nuestra primera etiqueta la _**v1.0.0**_.
+
+Vamos a crear una etiqueta de versión de tipo parche _**v1.0.1**_.
