@@ -44,6 +44,8 @@ Me gustan que me llamen Roger, me gusta el color rojo, mi videojuego favoirto es
  ![Rogelio](./img/Rogelio.jpg)
  ---
 
+
+
  ### Daniel Alberto Solano Noyola
 
  Soy Daniel , me gustan las carreras de autos , me gustan los videojuegos con buena narativa y estoy estudiando Ing en Software.
