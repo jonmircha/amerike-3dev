@@ -14,13 +14,46 @@ Hola soy tu amigo y docente digital... Jonathan Mircha
 
 ## Estudiantes
 
- ### Felipe Cortés Vázquez Gargallo
+
+### Felipe Cortés Vázquez Gargallo
  
-   Guapo , sexy , filantropo y humilde es como me describen algunos, aunque a mi me gusta verme como un inversionista a largo plazo. Estudiante en Amerike. Amentes de las mentirosas.
+Guapo , sexy , filantropo y humilde es como me describen algunos, aunque a mi me gusta verme como un inversionista a largo plazo. Estudiante en Amerike. Amentes de las mentirosas.
  
-   - [correo](cdmx2984@amerike.edu.mx) 
+- [correo](cdmx2984@amerike.edu.mx) 
    - [Mi perfil](https://github.com/Crow1341) 
  
-   ![Felipe](./img/felipe.jpg) 
+![Felipe](./img/felipe.jpg) 
  
-   --- 
+--- 
+
+### Santiago Guillermo Oropeza Reyes 
+ 
+Soy un estdiante en la Universidad Amerike en la carrera de desarrollo de videojuegos
+ 
+- [correoamerike](cdmx2939@amerike.edu.mx) 
+- [GitHub](https://github.com/JulioRegalado) 
+ 
+![Tu nombre](./img/yo.jpg)
+ 
+---
+
+###  Emiliano Sánchez Celis 
+
+Un breve párrafo de presentación sobre quien eres
+- [tucorreo@amerike.edu.mx](cdmx3107@amerike.edu.mx)
+- [Emi_Celis](https://github.com/EmiCelis)
+
+![Emi](./img/emi.jpeg)
+
+---
+
+### Rogelio Angel Hugo Sanchez Camacho
+
+Me gustan que me llamen Roger, me gusta el color rojo, mi videojuego favoirto es Minecraft y soy developer de tercer semestre.
+
+- [cdmx3073@amerike.edu.mx](cdmx3073@amerike.edu.mx)
+- [_@RogelioAMERIKE_](https://github.com/RogelioAMERIKE)
+
+![Rogelio](./img/Rogelio.jpg)
+
+---
