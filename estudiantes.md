@@ -13,3 +13,10 @@ Hola soy tu amigo y docente digital... Jonathan Mircha
 ---
 
 ## Estudiantes
+
+ ###  Emiliano Sánchez Celis 
+ Un breve párrafo de presentación sobre quien eres
+ - [tucorreo@amerike.edu.mx](cdmx3107@amerike.edu.mx)
+ - [Emi_Celis](https://github.com/EmiCelis)
+ ![Emi](./img/emi.jpeg)
+ ---
