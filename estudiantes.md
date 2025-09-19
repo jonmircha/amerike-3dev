@@ -14,9 +14,30 @@ Hola soy tu amigo y docente digital... Jonathan Mircha
 
 ## Estudiantes
 
- ### Rogelio Angel Hugo Sanchez Camacho
+### Santiago Guillermo Oropeza Reyes 
+ 
+Soy un estdiante en la Universidad Amerike en la carrera de desarrollo de videojuegos
+ 
+- [correoamerike](cdmx2939@amerike.edu.mx) 
+- [GitHub](https://github.com/JulioRegalado) 
+ 
+![Tu nombre](./img/yo.jpg)
+ 
+---
 
- Me gustan que me llamen Roger, me gusta el color rojo, mi videojuego favoirto es Minecraft y soy developer de tercer semestre.
+###  Emiliano Sánchez Celis 
+
+Un breve párrafo de presentación sobre quien eres
+- [tucorreo@amerike.edu.mx](cdmx3107@amerike.edu.mx)
+- [Emi_Celis](https://github.com/EmiCelis)
+
+![Emi](./img/emi.jpeg)
+
+---
+
+### Rogelio Angel Hugo Sanchez Camacho
+
+Me gustan que me llamen Roger, me gusta el color rojo, mi videojuego favoirto es Minecraft y soy developer de tercer semestre.
 
  - [cdmx3073@amerike.edu.mx](cdmx3073@amerike.edu.mx)
  - [_@RogelioAMERIKE_](https://github.com/RogelioAMERIKE)
