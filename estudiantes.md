@@ -15,6 +15,17 @@ Hola soy tu amigo y docente digital... Jonathan Mircha
 ## Estudiantes
 
 
+### Celeste Elisheba Bautista Altamirano
+
+Soy Celeste, aunque me gusta que me digan Eli, tengo 20 años, me gustan los videojuegos y el anime, mi anime favorito es Servamp y mi juego favorito actualmente es Lies of P
+
+-[cdmx2983@amerike.edu.mx](cdmx2983@amerike.edu.mx)
+-[elichaosx](https://github.com/elichaosx)
+
+![Celeste Bautista](./img/celestebautista.jpg)
+
+---
+
 ### Jesus Gael Saucedo Solorzano
  
 Me llamo Gael, estudio en Amerike, me gustan los videojuegos y el anime 
