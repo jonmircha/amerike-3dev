@@ -13,3 +13,14 @@ Hola soy tu amigo y docente digital... Jonathan Mircha
 ---
 
 ## Estudiantes
+
+ ### Santiago Guillermo Oropeza Reyes 
+ 
+   Soy un estdiante en la Universidad Amerike en la carrera de desarrollo de videojuegos
+ 
+   - [correoamerike](cdmx2939@amerike.edu.mx) 
+   - [GitHub](https://github.com/JulioRegalado) 
+ 
+   ![Tu nombre](./img/yo.jpg)
+ 
+   ---
