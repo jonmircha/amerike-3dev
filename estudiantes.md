@@ -22,3 +22,11 @@ Hola soy tu amigo y docente digital... Jonathan Mircha
  - [_@RogelioAMERIKE_](https://github.com/RogelioAMERIKE)
  ![Rogelio](./img/Rogelio.jpg)
  ---
+
+ ### Daniel Alberto Solano Noyola
+
+ Soy Daniel , me gustan las carreras de autos , me gustan los videojuegos con buena narativa y estoy estudiando Ing en Software.
+
+ - [cdmx3017@amerike.edu.mx](cdmx3017@amerike.edu.mx)
+ - [_@DanielS117GG_](https://github.com/DanielS117GG)
+ ![Daniel](./img/Daniel.jpg)
