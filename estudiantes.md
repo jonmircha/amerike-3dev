@@ -21,4 +21,4 @@ Hola soy tu amigo y docente digital... Jonathan Mircha
    - [cdmx2961@amerike.edu.mx](cdmx2961@amerike.edu.mx) 
    - [@jemilio1407](https://github.com/jemilio1407) 
  
-   ![Javier](./img/yo.jpg)
+   ![Javier](./img/javieralvarez.jpg)
