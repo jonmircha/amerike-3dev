@@ -15,6 +15,16 @@ Hola soy tu amigo y docente digital... Jonathan Mircha
 ## Estudiantes
 
 
+### Giselle Gallegos Ramos
+
+Soy Giselle, Estudio en Amerike, me gustan los videojuegos y programar paginas web
+
+-[cdmx3070@amerike.edu.mx](cdmx3070@amerike.edu.mx)
+-[Perfil git](https://github.com/GiGifgr)
+
+![Giselle](img/yo.png)
+
+
 ### Felipe Cortés Vázquez Gargallo
  
 Guapo , sexy , filantropo y humilde es como me describen algunos, aunque a mi me gusta verme como un inversionista a largo plazo. Estudiante en Amerike. Amentes de las mentirosas.
