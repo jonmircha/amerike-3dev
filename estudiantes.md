@@ -15,6 +15,17 @@ Hola soy tu amigo y docente digital... Jonathan Mircha
 ## Estudiantes
 
 
+### Jesus Gael Saucedo Solorzano
+ 
+Me llamo Gael, estudio en Amerike, me gustan los videojuegos y el anime 
+ 
+- [cdmx2963@amerike.edu.mx](cdmx2963@amerike.edu.mx) 
+- [@urli-gg](https://github.com/urli-gg) 
+ 
+![Gael Saucedo](./img/gael-saucedo.jpeg)
+
+---
+
 ### Giselle Gallegos Ramos
 
 Soy Giselle, Estudio en Amerike, me gustan los videojuegos y programar paginas web
@@ -30,7 +41,7 @@ Soy Giselle, Estudio en Amerike, me gustan los videojuegos y programar paginas w
 Guapo , sexy , filantropo y humilde es como me describen algunos, aunque a mi me gusta verme como un inversionista a largo plazo. Estudiante en Amerike. Amentes de las mentirosas.
  
 - [correo](cdmx2984@amerike.edu.mx) 
-   - [Mi perfil](https://github.com/Crow1341) 
+- [Mi perfil](https://github.com/Crow1341) 
  
 ![Felipe](./img/felipe.jpg) 
  
@@ -70,12 +81,11 @@ Me gustan que me llamen Roger, me gusta el color rojo, mi videojuego favoirto es
 
  ### Patricio Fuentes Silva
  
-   Soy Patricio Fuentes estudiante de Amerike en la carrera de Desarrollo de Software Interactivo y de Videojuegos y estoy en el tercer semestre.
+Soy Patricio Fuentes estudiante de Amerike en la carrera de Desarrollo de Software Interactivo y de Videojuegos y estoy en el tercer semestre.
  
-   - [cdmx3029@amerike.edu.mx](cdmx3029@amerike.edu.mx) 
-   - [SoyPatu](https://github.com/SoyPatu) 
+- [cdmx3029@amerike.edu.mx](cdmx3029@amerike.edu.mx) 
+- [SoyPatu](https://github.com/SoyPatu) 
  
+![Patricio Fuentes](./img/patricio.jpeg) 
  
-   ![Patricio Fuentes](./img/patricio.jpeg) 
- 
-   ---
+---
