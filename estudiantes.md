@@ -14,6 +14,18 @@ Hola soy tu amigo y docente digital... Jonathan Mircha
 
 ## Estudiantes
 
+
+### Diego Alejandro Caceres Cabello 
+ 
+Hola soy Diego y tengo 22 añitos uwu lol xddd
+ 
+- [cdmx3126@amerike.edu.mx](cdmx3126@amerike.edu.mx) 
+- [Mi GitHub](https://github.com/P4r4c3lsus) 
+ 
+![Diego Caceres](./img/Diego_Caceres.jpg) 
+ 
+---
+
 ### Javier Emilio Alvarez Reyes 
  
 Soy Javier Alvarez me gustan los videojuegos la musica y los superheroes
@@ -121,7 +133,7 @@ Me gustan que me llamen Roger, me gusta el color rojo, mi videojuego favoirto es
 
 ---
 
- ### Patricio Fuentes Silva
+### Patricio Fuentes Silva
  
 Soy Patricio Fuentes estudiante de Amerike en la carrera de Desarrollo de Software Interactivo y de Videojuegos y estoy en el tercer semestre.
  
