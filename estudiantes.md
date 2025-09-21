@@ -143,3 +143,11 @@ Soy Patricio Fuentes estudiante de Amerike en la carrera de Desarrollo de Softwa
 ![Patricio Fuentes](./img/patricio.jpeg) 
  
 ---
+
+### Daniel Alberto Solano Noyola
+
+ Soy Daniel , me gustan las carreras de autos , me gustan los videojuegos con buena narativa y estoy estudiando Ing en Software.
+
+ - [cdmx3017@amerike.edu.mx](cdmx3017@amerike.edu.mx)
+ - [_@DanielS117GG_](https://github.com/DanielS117GG)
+ ![Daniel](./img/Daniel.jpg)
