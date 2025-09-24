@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Piedra 🪨, Papel 📄 o Tijeras ✂️</title>
+  </head>
+  <body>
+    <h1>Piedra 🪨, Papel 📄 o Tijeras ✂️</h1>
+    <script>
+      /* 
+      alert("hola"); -> Mensaje + Aceptar
+      confirm("hola"); -> Mensaje + Aceptar + Cancelar
+      prompt("hola"); -> Mensaje + Aceptar + Cancelar + Input */
+      function random(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+      }
+
+      let player = 0;
+      let machine = random(1, 3);
+      let message = `
+        Elige:
+          1 - Piedra 🪨
+          2 - Papel 📄
+          3 - Tijeras ✂️
+      `;
+
+      player = prompt(message);
+      console.log("Jugador:", player);
+      console.log("Máquina", machine);
+
+      if (player === "1") {
+        alert("Elegiste Piedra 🪨");
+      } else if (player === "2") {
+        alert("Elegiste Papel 📄");
+      } else if (player === "3") {
+        alert("Elegiste Tijeras ✂️");
+      } else {
+        alert("Opción no valida 😬");
+      }
+
+      if (machine === 1) {
+        alert("Máquina elige Piedra 🪨");
+      } else if (machine === 2) {
+        alert("Máquina elige Papel 📄");
+      } else if (player === 3) {
+        alert("Máquina elige Tijeras ✂️");
+      } else {
+        alert("Máquina elige opción no valida 😬");
+      }
+    </script>
+  </body>
+</html>
