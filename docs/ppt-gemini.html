@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Piedra, Papel y Tijeras</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        background-color: #f0f2f5;
+        color: #333;
+      }
+
+      .game-container {
+        background-color: #ffffff;
+        padding: 30px 40px;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 90%;
+        max-width: 500px;
+      }
+
+      h1 {
+        color: #2c3e50;
+        margin-bottom: 25px;
+        font-size: 2.2em;
+      }
+
+      .score-board {
+        display: flex;
+        justify-content: space-around;
+        background-color: #e8f0fe;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+        font-weight: bold;
+        font-size: 1.1em;
+        color: #34495e;
+      }
+
+      .choices {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 30px;
+      }
+
+      .choice-btn {
+        background-color: #3498db;
+        color: white;
+        border: none;
+        padding: 15px 25px;
+        border-radius: 8px;
+        font-size: 1.5em;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.1s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .choice-btn:hover {
+        background-color: #2980b9;
+        transform: translateY(-2px);
+      }
+
+      .choice-btn:active {
+        background-color: #21618c;
+        transform: translateY(0);
+      }
+
+      .result-display {
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 25px;
+        border: 1px solid #ddd;
+      }
+
+      .result-display p {
+        margin: 8px 0;
+        font-size: 1.1em;
+      }
+
+      #result-message {
+        font-size: 1.8em;
+        color: #e74c3c; /* Default for "Choose your move" or initial message */
+        margin-top: 15px;
+      }
+
+      /* Colores para el mensaje de resultado */
+      .win {
+        color: #27ae60;
+      } /* Verde para ganar */
+      .lose {
+        color: #e74c3c;
+      } /* Rojo para perder */
+      .draw {
+        color: #f39c12;
+      } /* Naranja para empate */
+
+      #reset-btn {
+        background-color: #95a5a6;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 6px;
+        font-size: 1.1em;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      #reset-btn:hover {
+        background-color: #7f8c8d;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="game-container">
+      <h1>Piedra, Papel o Tijeras</h1>
+
+      <div class="score-board">
+        <div id="player-score">Jugador: 0</div>
+        <div id="computer-score">Computadora: 0</div>
+      </div>
+
+      <div class="choices">
+        <button id="rock" class="choice-btn">🪨 Piedra</button>
+        <button id="paper" class="choice-btn">📄 Papel</button>
+        <button id="scissors" class="choice-btn">✂️ Tijeras</button>
+      </div>
+
+      <div class="result-display">
+        <p>Tu elección: <span id="player-choice-display"></span></p>
+        <p>
+          Elección de la Computadora: <span id="computer-choice-display"></span>
+        </p>
+        <h2 id="result-message">¡Elige tu jugada!</h2>
+      </div>
+
+      <button id="reset-btn">Reiniciar Juego</button>
+    </div>
+
+    <script>
+      // Obtener elementos del DOM
+      const playerChoiceDisplay = document.getElementById(
+        "player-choice-display"
+      );
+      const computerChoiceDisplay = document.getElementById(
+        "computer-choice-display"
+      );
+      const resultMessage = document.getElementById("result-message");
+      const playerScoreDisplay = document.getElementById("player-score");
+      const computerScoreDisplay = document.getElementById("computer-score");
+      const choiceButtons = document.querySelectorAll(".choice-btn");
+      const resetButton = document.getElementById("reset-btn");
+
+      let playerScore = 0;
+      let computerScore = 0;
+
+      // Opciones posibles del juego
+      const choices = ["piedra", "papel", "tijeras"];
+
+      // Función para generar la elección de la computadora
+      function generateComputerChoice() {
+        const randomIndex = Math.floor(Math.random() * choices.length);
+        return choices[randomIndex];
+      }
+
+      // Función para determinar el ganador
+      function getResult(playerChoice, computerChoice) {
+        if (playerChoice === computerChoice) {
+          return "Empate";
+        }
+
+        if (
+          (playerChoice === "piedra" && computerChoice === "tijeras") ||
+          (playerChoice === "papel" && computerChoice === "piedra") ||
+          (playerChoice === "tijeras" && computerChoice === "papel")
+        ) {
+          return "Ganaste";
+        } else {
+          return "Perdiste";
+        }
+      }
+
+      // Función para actualizar el DOM con el resultado
+      function updateUI(playerChoice, computerChoice, result) {
+        playerChoiceDisplay.textContent = formatChoice(playerChoice);
+        computerChoiceDisplay.textContent = formatChoice(computerChoice);
+
+        resultMessage.classList.remove("win", "lose", "draw"); // Limpiar clases anteriores
+
+        if (result === "Ganaste") {
+          resultMessage.textContent = `¡Ganaste! ${formatChoice(
+            playerChoice
+          )} le gana a ${formatChoice(computerChoice)}.`;
+          resultMessage.classList.add("win");
+          playerScore++;
+        } else if (result === "Perdiste") {
+          resultMessage.textContent = `¡Perdiste! ${formatChoice(
+            computerChoice
+          )} le gana a ${formatChoice(playerChoice)}.`;
+          resultMessage.classList.add("lose");
+          computerScore++;
+        } else {
+          resultMessage.textContent = `¡Es un Empate! Ambos eligieron ${formatChoice(
+            playerChoice
+          )}.`;
+          resultMessage.classList.add("draw");
+        }
+
+        playerScoreDisplay.textContent = `Jugador: ${playerScore}`;
+        computerScoreDisplay.textContent = `Computadora: ${computerScore}`;
+      }
+
+      // Función para formatear la elección (ej. "piedra" a "Piedra")
+      function formatChoice(choice) {
+        return choice.charAt(0).toUpperCase() + choice.slice(1);
+      }
+
+      // Manejador de eventos para los botones de elección
+      choiceButtons.forEach((button) => {
+        button.addEventListener("click", (e) => {
+          const playerChoice = e.target.id; // 'rock', 'paper', 'scissors'
+          const computerChoice = generateComputerChoice();
+          const result = getResult(playerChoice, computerChoice);
+          updateUI(playerChoice, computerChoice, result);
+        });
+      });
+
+      // Manejador de eventos para el botón de reiniciar
+      resetButton.addEventListener("click", () => {
+        playerScore = 0;
+        computerScore = 0;
+        playerScoreDisplay.textContent = "Jugador: 0";
+        computerScoreDisplay.textContent = "Computadora: 0";
+        playerChoiceDisplay.textContent = "";
+        computerChoiceDisplay.textContent = "";
+        resultMessage.textContent = "¡Elige tu jugada!";
+        resultMessage.classList.remove("win", "lose", "draw");
+      });
+    </script>
+  </body>
+</html>

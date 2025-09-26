@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Piedra 🪨, Papel 📄 o Tijeras ✂️</title>
+    <style>
+      body {
+        min-height: 100vh;
+        font-family: sans-serif;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #74c8fc;
+        color: navy;
+      }
+
+      #btn-play {
+        font-size: 200%;
+        color: inherit;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Piedra 🪨, Papel 📄 o Tijeras ✂️</h1>
+      <button id="btn-play">🎮 Jugar 🎮</button>
+    </main>
+    <script>
+      function playPPT() {
+        /*
+              alert("hola"); -> Mensaje + Aceptar
+              confirm("hola"); -> Mensaje + Aceptar + Cancelar
+              prompt("hola"); -> Mensaje + Aceptar + Cancelar + Input */
+        function random(min, max) {
+          return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+
+        function selectChoice(gamer, choice) {
+          let result = "";
+          choice = parseInt(choice);
+
+          if (gamer === "🤓") {
+            result = "El jugador 🤓 elige";
+          } else if (gamer === "🤖") {
+            result = "La máquina 🤖 elige";
+          } else {
+            result = "Jugador no válido 😬";
+          }
+
+          if (choice === 1) {
+            result += " Piedra 🪨";
+          } else if (choice === 2) {
+            result += " Papel 📄";
+          } else if (choice === 3) {
+            result += " Tijeras ✂️";
+          } else {
+            result += " Opción no válida 😬";
+          }
+
+          return result;
+        }
+
+        function fight(player, machine) {
+          player = parseInt(player);
+
+          if (player === machine) {
+            alert("EMPATE 🤓🤜🏻💥🤛🏻🤖");
+            score.ties++;
+          } else if (player === 1 && machine === 3) {
+            alert("GANASTE 🤓🤜🏻💥🤖");
+            score.wins++;
+          } else if (player === 2 && machine === 1) {
+            alert("GANASTE 🤓🤜🏻💥🤖");
+            score.wins++;
+          } else if (player === 3 && machine === 2) {
+            alert("GANASTE 🤓🤜🏻💥🤖");
+            score.wins++;
+          } else {
+            alert("PERDISTE 😵💥🤛🏻🤖");
+            score.losses++;
+          }
+        }
+
+        //objeto en JS
+        let score = {
+          wins: 0,
+          losses: 0,
+          ties: 0,
+        };
+
+        let games = prompt("¿Cuántas partidas quieres jugar 🕹️🎮?");
+        games = parseInt(games);
+
+        if (games <= 0 || isNaN(games)) {
+          alert("Por favor, introduce un número válido de partidas 🤨.");
+          return;
+        } else {
+          for (let i = 0; i < games; i++) {
+            let message = `
+              Partida ${i + 1} de ${games}.
+              Elige:
+                1 - Piedra 🪨
+                2 - Papel 📄
+                3 - Tijeras ✂️
+            `;
+            let player = prompt(message);
+            let machine = random(1, 3);
+
+            alert(selectChoice("🤓", player));
+            alert(selectChoice("🤖", machine));
+            fight(player, machine);
+          }
+
+          /* let scoreMessage = `
+            😀 Ganaste: ${score.wins} veces.
+            😩 Perdiste: ${score.losses} veces.
+            😐 Empataste: ${score.ties} veces.
+          `; */
+
+          let scoreMessage = `
+            😀 Ganaste: ${
+              score.wins === 1 ? `${score.wins} vez` : `${score.wins} veces`
+            }.
+            😩 Perdiste: ${
+              score.losses === 1
+                ? `${score.losses} vez`
+                : `${score.losses} veces`
+            }.
+            😐 Empataste: ${
+              score.ties === 1 ? `${score.ties} vez` : `${score.ties} veces`
+            }.
+          `;
+          alert(scoreMessage);
+        }
+      }
+
+      let btnPlay = document.querySelector("#btn-play");
+      //Evento: objeto.addEventListener("evento", funcion);
+      btnPlay.addEventListener("click", playPPT);
+    </script>
+  </body>
+</html>

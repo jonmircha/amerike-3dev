@@ -8,7 +8,7 @@
   <body>
     <h1>Piedra 🪨, Papel 📄 o Tijeras ✂️</h1>
     <script>
-      /* 
+      /*
       alert("hola"); -> Mensaje + Aceptar
       confirm("hola"); -> Mensaje + Aceptar + Cancelar
       prompt("hola"); -> Mensaje + Aceptar + Cancelar + Input */
@@ -43,10 +43,25 @@
         alert("Máquina elige Piedra 🪨");
       } else if (machine === 2) {
         alert("Máquina elige Papel 📄");
-      } else if (player === 3) {
+      } else if (machine === 3) {
         alert("Máquina elige Tijeras ✂️");
       } else {
         alert("Máquina elige opción no valida 😬");
+      }
+
+      //Combate
+      player = parseInt(player);
+
+      if (player === machine) {
+        alert("EMPATE 🤓🤜🏻💥🤛🏻🤖");
+      } else if (player === 1 && machine === 3) {
+        alert("GANASTE 🤓🤜🏻💥🤖");
+      } else if (player === 2 && machine === 1) {
+        alert("GANASTE 🤓🤜🏻💥🤖");
+      } else if (player === 3 && machine === 2) {
+        alert("GANASTE 🤓🤜🏻💥🤖");
+      } else {
+        alert("PERDISTE 😵💥🤛🏻🤖");
       }
     </script>
   </body>

@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Piedra, Papel o Tijeras — Vanilla JS</title>
+    <style>
+      :root {
+        --bg: #0b0f14;
+        --panel: #111827;
+        --muted: #94a3b8;
+        --text: #e5e7eb;
+        --accent: #22d3ee;
+        --win: #22c55e;
+        --lose: #ef4444;
+        --draw: #eab308;
+        --ring: rgba(34, 211, 238, 0.3);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        background: radial-gradient(
+            1200px 800px at 80% -10%,
+            #0a3b4a22,
+            transparent
+          ),
+          var(--bg);
+        color: var(--text);
+        font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial,
+          sans-serif;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+      }
+      .app {
+        width: min(960px, 100%);
+        background: linear-gradient(180deg, #0e1626, #0b1220);
+        border: 1px solid #1f2937;
+        border-radius: 24px;
+        padding: 24px;
+        box-shadow: 0 10px 40px #0008;
+      }
+      h1 {
+        margin: 0 0 8px;
+        font-weight: 800;
+        letter-spacing: 0.3px;
+      }
+      .subtitle {
+        color: var(--muted);
+        margin: 0 0 16px;
+      }
+
+      .scoreboard {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        gap: 16px;
+        align-items: center;
+        background: var(--panel);
+        border: 1px solid #243041;
+        border-radius: 16px;
+        padding: 12px 16px;
+        margin-bottom: 16px;
+      }
+      .score {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        background: #0f172a;
+        border: 1px solid #243041;
+        border-radius: 12px;
+        padding: 10px 12px;
+      }
+      .score .label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 700;
+      }
+      .score .points {
+        font-size: 1.5rem;
+        font-variant-numeric: tabular-nums;
+      }
+      .center {
+        text-align: center;
+        color: var(--muted);
+      }
+
+      .controls {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+        margin: 16px 0;
+      }
+      button.play {
+        border: 1px solid #1f2937;
+        background: #0f172a;
+        color: var(--text);
+        padding: 14px 12px;
+        border-radius: 14px;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: transform 0.06s ease, box-shadow 0.2s ease,
+          border-color 0.2s;
+      }
+      button.play[disabled] {
+        opacity: 0.45;
+        cursor: not-allowed;
+      }
+      button.play:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 20px #0008;
+        border-color: #334155;
+      }
+      .move {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+      .emoji {
+        font-size: 1.6rem;
+        line-height: 1;
+        filter: drop-shadow(0 4px 10px #0006);
+      }
+
+      .settings {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+        justify-content: space-between;
+        margin: 8px 0 16px;
+        background: var(--panel);
+        border: 1px solid #243041;
+        border-radius: 16px;
+        padding: 12px 16px;
+      }
+      .settings .group {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--muted);
+      }
+      select,
+      .ghost {
+        appearance: none;
+        background: #0f172a;
+        color: var(--text);
+        border: 1px solid #243041;
+        border-radius: 10px;
+        padding: 10px 12px;
+        font-weight: 600;
+      }
+      .ghost {
+        cursor: pointer;
+      }
+
+      .result {
+        margin: 10px 0 6px;
+        font-size: 1.05rem;
+        padding: 12px 14px;
+        border-radius: 12px;
+        border: 1px dashed #2b394d;
+        background: #0e1729;
+      }
+      .result.win {
+        border-color: var(--win);
+        box-shadow: inset 0 0 0 2px var(--ring);
+      }
+      .result.lose {
+        border-color: var(--lose);
+        box-shadow: inset 0 0 0 2px #ef444433;
+      }
+      .result.draw {
+        border-color: var(--draw);
+        box-shadow: inset 0 0 0 2px #eab30833;
+      }
+
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin: 10px 0;
+      }
+      .card {
+        background: var(--panel);
+        border: 1px solid #243041;
+        border-radius: 16px;
+        padding: 12px;
+      }
+
+      .history {
+        max-height: 200px;
+        overflow: auto;
+        padding-right: 6px;
+      }
+      .history ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 8px;
+      }
+      .history li {
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+        padding: 8px 10px;
+        background: #0f172a;
+        border: 1px solid #243041;
+        border-radius: 10px;
+        font-variant-numeric: tabular-nums;
+      }
+      .badge {
+        padding: 2px 8px;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        font-weight: 800;
+        letter-spacing: 0.2px;
+      }
+      .badge.win {
+        background: #052e1a;
+        color: #86efac;
+        border: 1px solid #064e3b;
+      }
+      .badge.lose {
+        background: #3f0a0a;
+        color: #fecaca;
+        border: 1px solid #7f1d1d;
+      }
+      .badge.draw {
+        background: #3b2a05;
+        color: #fde68a;
+        border: 1px solid #854d0e;
+      }
+
+      footer {
+        color: var(--muted);
+        margin-top: 12px;
+        font-size: 0.95rem;
+      }
+
+      @media (max-width: 640px) {
+        .controls {
+          grid-template-columns: 1fr;
+        }
+        .cards {
+          grid-template-columns: 1fr;
+        }
+        .scoreboard {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="app" role="application">
+      <h1>✊✋✌️ Piedra, Papel o Tijeras</h1>
+      <p class="subtitle">
+        Vanilla JS · Accesible · Con historial y marcador persistente
+      </p>
+
+      <section class="scoreboard" aria-label="Marcador">
+        <div class="score" aria-live="polite">
+          <div class="label">🧑 <span>Tú</span></div>
+          <div class="points" id="playerScore">0</div>
+        </div>
+        <div class="center">
+          <div>
+            Ronda <span id="roundNumber">0</span><span id="roundTotal"></span>
+          </div>
+        </div>
+        <div class="score" aria-live="polite">
+          <div class="label">🤖 <span>CPU</span></div>
+          <div class="points" id="cpuScore">0</div>
+        </div>
+      </section>
+
+      <section class="controls" aria-label="Controles">
+        <button
+          class="play"
+          data-move="piedra"
+          aria-keyshortcuts="R"
+          title="Atajo: R"
+        >
+          <span class="move"
+            ><span class="emoji" aria-hidden="true">✊</span> Piedra</span
+          >
+        </button>
+        <button
+          class="play"
+          data-move="papel"
+          aria-keyshortcuts="P"
+          title="Atajo: P"
+        >
+          <span class="move"
+            ><span class="emoji" aria-hidden="true">✋</span> Papel</span
+          >
+        </button>
+        <button
+          class="play"
+          data-move="tijeras"
+          aria-keyshortcuts="T"
+          title="Atajo: T"
+        >
+          <span class="move"
+            ><span class="emoji" aria-hidden="true">✌️</span> Tijeras</span
+          >
+        </button>
+      </section>
+
+      <section class="settings" aria-label="Configuración">
+        <div class="group">
+          <label for="mode">Modo:</label>
+          <select id="mode">
+            <option value="endless">Puntuación libre</option>
+            <option value="bo3">Mejor de 3</option>
+            <option value="bo5">Mejor de 5</option>
+            <option value="bo7">Mejor de 7</option>
+          </select>
+        </div>
+        <div class="group">
+          <button id="reset" class="ghost" title="Reiniciar juego">
+            Reiniciar
+          </button>
+        </div>
+      </section>
+
+      <section class="result" id="result" aria-live="polite">
+        Haz tu jugada…
+      </section>
+
+      <section class="cards">
+        <div class="card">
+          <strong>Tu elección:</strong>
+          <div id="youPick" aria-live="polite" style="margin-top: 6px">—</div>
+        </div>
+        <div class="card">
+          <strong>Elección de la CPU:</strong>
+          <div id="cpuPick" aria-live="polite" style="margin-top: 6px">—</div>
+        </div>
+      </section>
+
+      <section class="history" aria-label="Historial">
+        <ul id="history" aria-live="polite"></ul>
+      </section>
+
+      <footer>
+        Atajos de teclado: <kbd>R</kbd> = Piedra, <kbd>P</kbd> = Papel,
+        <kbd>T</kbd> = Tijeras.
+      </footer>
+    </main>
+
+    <script>
+      (function () {
+        const MOVES = /** @type {const} */ (["piedra", "papel", "tijeras"]);
+        const ICON = { piedra: "✊", papel: "✋", tijeras: "✌️" };
+        const BEATS = { piedra: "tijeras", papel: "piedra", tijeras: "papel" };
+
+        const els = {
+          buttons: Array.from(document.querySelectorAll("button.play")),
+          mode: document.getElementById("mode"),
+          reset: document.getElementById("reset"),
+          playerScore: document.getElementById("playerScore"),
+          cpuScore: document.getElementById("cpuScore"),
+          roundNumber: document.getElementById("roundNumber"),
+          roundTotal: document.getElementById("roundTotal"),
+          result: document.getElementById("result"),
+          youPick: document.getElementById("youPick"),
+          cpuPick: document.getElementById("cpuPick"),
+          history: document.getElementById("history"),
+        };
+
+        const STORAGE_KEY = "ppt_vjs_state_v1";
+
+        function defaultState() {
+          return {
+            player: 0,
+            cpu: 0,
+            rounds: 0,
+            mode: "endless",
+            ended: false,
+            history: [],
+          };
+        }
+
+        /** @type {{ player:number; cpu:number; rounds:number; mode:'endless'|'bo3'|'bo5'|'bo7'; ended:boolean; history:Array<{n:number, you:string, cpu:string, res:'win'|'lose'|'draw'}> } } */
+        let state = load();
+
+        function load() {
+          try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return defaultState();
+            const data = JSON.parse(raw);
+            return { ...defaultState(), ...data };
+          } catch (e) {
+            return defaultState();
+          }
+        }
+        function save() {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        }
+
+        function maxWinsFor(mode) {
+          const map = { bo3: 2, bo5: 3, bo7: 4 };
+          return map[mode] || Infinity;
+        }
+        function totalRoundsFor(mode) {
+          const map = { bo3: 3, bo5: 5, bo7: 7 };
+          return map[mode] || null; // null = libre
+        }
+
+        function updateUI() {
+          els.playerScore.textContent = String(state.player);
+          els.cpuScore.textContent = String(state.cpu);
+          els.roundNumber.textContent = String(state.rounds);
+          const total = totalRoundsFor(state.mode);
+          els.roundTotal.textContent = total ? ` / ${total}` : "";
+          els.mode.value = state.mode;
+
+          // Historial
+          els.history.innerHTML = "";
+          state.history
+            .slice()
+            .reverse()
+            .forEach((item) => {
+              const li = document.createElement("li");
+              const left = document.createElement("span");
+              const right = document.createElement("span");
+              const badge = document.createElement("span");
+              badge.className = `badge ${item.res}`;
+              badge.textContent =
+                item.res === "win"
+                  ? "GANASTE"
+                  : item.res === "lose"
+                  ? "PERDISTE"
+                  : "EMPATE";
+              left.textContent = `#${item.n} · Tú: ${ICON[item.you]} ${
+                item.you
+              }  |  CPU: ${ICON[item.cpu]} ${item.cpu}`;
+              right.appendChild(badge);
+              li.append(left, right);
+              els.history.appendChild(li);
+            });
+
+          // Estado botones
+          els.buttons.forEach((b) => (b.disabled = state.ended));
+
+          // Estado visual resultado (mantener última clase)
+          els.result.classList.remove("win", "lose", "draw");
+        }
+
+        function announce(text, kind) {
+          els.result.textContent = text;
+          els.result.classList.remove("win", "lose", "draw");
+          if (kind) els.result.classList.add(kind);
+        }
+
+        function cpuMove() {
+          return MOVES[Math.floor(Math.random() * MOVES.length)];
+        }
+
+        function play(you) {
+          if (state.ended) return;
+          const cpu = cpuMove();
+          const res =
+            you === cpu ? "draw" : BEATS[you] === cpu ? "win" : "lose";
+
+          state.rounds += 1;
+          if (res === "win") state.player += 1;
+          if (res === "lose") state.cpu += 1;
+          state.history.push({ n: state.rounds, you, cpu, res });
+
+          els.youPick.textContent = `${ICON[you]} ${you}`;
+          els.cpuPick.textContent = `${ICON[cpu]} ${cpu}`;
+
+          const msg =
+            res === "win"
+              ? "¡Ganaste esta ronda!"
+              : res === "lose"
+              ? "Perdiste esta ronda."
+              : "Empate.";
+          announce(`${msg} (${ICON[you]} vs ${ICON[cpu]})`, res);
+
+          // Verificar fin de partida en modos "mejor de"
+          const need = maxWinsFor(state.mode);
+          if (need !== Infinity) {
+            if (state.player >= need || state.cpu >= need) {
+              state.ended = true;
+              const finalMsg =
+                state.player > state.cpu
+                  ? "🎉 ¡Victoria! Ganaste la partida."
+                  : "🤖 La CPU ganó la partida.";
+              announce(finalMsg, state.player > state.cpu ? "win" : "lose");
+            }
+          }
+
+          save();
+          updateUI();
+        }
+
+        function reset(hard = false) {
+          const keepMode = state.mode;
+          state = hard ? defaultState() : { ...defaultState(), mode: keepMode };
+          els.youPick.textContent = "—";
+          els.cpuPick.textContent = "—";
+          announce("Juego reiniciado. Haz tu jugada…");
+          save();
+          updateUI();
+        }
+
+        // Listeners
+        els.buttons.forEach((btn) =>
+          btn.addEventListener("click", () => play(btn.dataset.move))
+        );
+        els.mode.addEventListener("change", (e) => {
+          state.mode = e.target.value;
+          // Reiniciar marcador al cambiar de modo
+          reset(false);
+        });
+        els.reset.addEventListener("click", () => reset(false));
+
+        // Atajos de teclado: R, P, T (mayús/minús)
+        window.addEventListener("keydown", (ev) => {
+          const k = ev.key.toLowerCase();
+          if (["r", "p", "t"].includes(k)) {
+            ev.preventDefault();
+            const map = { r: "piedra", p: "papel", t: "tijeras" };
+            play(map[k]);
+          }
+        });
+
+        // Primera carga
+        updateUI();
+        if (state.rounds > 0) {
+          announce("¡Continuamos! Marcador cargado desde la última sesión.");
+        }
+      })();
+    </script>
+  </body>
+</html>

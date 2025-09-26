@@ -4,7 +4,11 @@ Bienvenid@s al repositorio de _GitHub_ de la materia _Programación en Lenguajes
 
 En este enlace encuentras los [apuntes](./apuntes.md) de la materia.
 
-[Documentación del juego: "Piedra, Papel o Tijeras"](./ppt/ppt.md)
+[Documentación del juego: "Piedra, Papel o Tijeras"](./docs/ppt.md)
+
+### Cómo activar _GitHub Pages_
+
+![Cómo activar GitHub Pages](https://raw.githubusercontent.com/jonmircha/starter-project-eleventy-github-pages/main/code/public/img/configurar-github-pages.png)
 
 Vamos a revisar como crear etiquetas en nuestro proyecto, vamos a crear nuestra primera etiqueta la _**v1.0.0**_.
 

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Piedra, Papel o Tijeras</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f4f4f4;
+        text-align: center;
+      }
+      .container {
+        margin: 30px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 8px;
+        display: inline-block;
+        box-shadow: 0 0 10px #ccc;
+      }
+      #group-btn button {
+        font-size: 2em;
+        margin: 10px;
+        padding: 15px 25px;
+        border-radius: 50%;
+        border: none;
+        background: #e3e3e3;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+      #group-btn button:hover {
+        background: #c7d5e0;
+      }
+      #result {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        margin: 25px 0;
+      }
+      #user-img,
+      #machine-img {
+        width: 80px;
+        height: 80px;
+        background: #ecf1f4;
+        border-radius: 50%;
+      }
+      #start-text {
+        font-size: 1.2em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Piedra, Papel o Tijeras</h1>
+      <div id="result">
+        <div>
+          <img
+            id="user-img"
+            src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Rock-paper-scissors_%28rock%29.png"
+          />
+          <h5>Tú</h5>
+        </div>
+        <div id="start-text">Elige una opción</div>
+        <div>
+          <img
+            id="machine-img"
+            src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Rock-paper-scissors_%28rock%29.png"
+          />
+          <h5>Máquina</h5>
+        </div>
+      </div>
+      <div id="group-btn">
+        <button id="rock" type="button">🪨</button>
+        <button id="paper" type="button">📄</button>
+        <button id="scissors" type="button">✂️</button>
+      </div>
+    </div>
+    <script>
+      const ROCK = "rock";
+      const PAPER = "paper";
+      const SCISSORS = "scissors";
+      const TIE = 0;
+      const WIN = 1;
+      const LOST = 2;
+
+      let isPlaying = false;
+
+      const images = {
+        rock: "https://upload.wikimedia.org/wikipedia/commons/7/7e/Rock-paper-scissors_%28rock%29.png",
+        paper:
+          "https://upload.wikimedia.org/wikipedia/commons/a/af/Rock-paper-scissors_%28paper%29.png",
+        scissors:
+          "https://upload.wikimedia.org/wikipedia/commons/5/5f/Rock-paper-scissors_%28scissors%29.png",
+      };
+
+      const rockBtn = document.getElementById("rock");
+      const paperBtn = document.getElementById("paper");
+      const scissorsBtn = document.getElementById("scissors");
+      const resultText = document.getElementById("start-text");
+      const userImg = document.getElementById("user-img");
+      const machineImg = document.getElementById("machine-img");
+
+      rockBtn.addEventListener("click", () => {
+        play(ROCK);
+      });
+      paperBtn.addEventListener("click", () => {
+        play(PAPER);
+      });
+      scissorsBtn.addEventListener("click", () => {
+        play(SCISSORS);
+      });
+
+      function play(userOption) {
+        if (isPlaying) return;
+        isPlaying = true;
+        userImg.src = images[userOption];
+        resultText.innerHTML = "¡Eligiendo!";
+        const interval = setInterval(function () {
+          const machineOption = calcMachineOption();
+          machineImg.src = images[machineOption];
+        }, 200);
+
+        setTimeout(function () {
+          clearInterval(interval);
+          const machineOption = calcMachineOption();
+          const result = calcResult(userOption, machineOption);
+          machineImg.src = images[machineOption];
+          switch (result) {
+            case TIE:
+              resultText.innerHTML = "¡Empate!";
+              break;
+            case WIN:
+              resultText.innerHTML = "¡Ganaste!";
+              break;
+            case LOST:
+              resultText.innerHTML = "¡Perdiste!";
+              break;
+          }
+          isPlaying = false;
+        }, 2000);
+      }
+
+      function calcMachineOption() {
+        const number = Math.floor(Math.random() * 3);
+        switch (number) {
+          case 0:
+            return ROCK;
+          case 1:
+            return PAPER;
+          case 2:
+            return SCISSORS;
+        }
+      }
+
+      function calcResult(userOption, machineOption) {
+        if (userOption === machineOption) return TIE;
+        if (userOption === ROCK) return machineOption === PAPER ? LOST : WIN;
+        if (userOption === PAPER)
+          return machineOption === SCISSORS ? LOST : WIN;
+        if (userOption === SCISSORS) return machineOption === ROCK ? LOST : WIN;
+      }
+    </script>
+  </body>
+</html>
