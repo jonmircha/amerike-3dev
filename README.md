@@ -8,6 +8,8 @@ En este enlace encuentras los [apuntes](./apuntes.md) de la materia.
 
 ### Cómo activar _GitHub Pages_
 
+Este es el [enlace](https://jonmircha.github.io/amerike-3dev/) de GitHub Pages de este repositorio.
+
 ![Cómo activar GitHub Pages](https://raw.githubusercontent.com/jonmircha/starter-project-eleventy-github-pages/main/code/public/img/configurar-github-pages.png)
 
 Vamos a revisar como crear etiquetas en nuestro proyecto, vamos a crear nuestra primera etiqueta la _**v1.0.0**_.
