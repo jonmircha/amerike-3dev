@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pong Mejorado</title>
+    <style>
+      :root {
+        --bg-color: #f0f0f0;
+        --text-color: #333;
+        --border-color: #333;
+        --paddle-color: #333;
+        --ball-color: #333;
+        --overlay-bg: rgba(255, 255, 255, 0.9);
+      }
+
+      [data-theme="dark"] {
+        --bg-color: #000;
+        --text-color: #fff;
+        --border-color: #fff;
+        --paddle-color: #fff;
+        --ball-color: #fff;
+        --overlay-bg: rgba(0, 0, 0, 0.85);
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      .game-container {
+        position: relative;
+        width: 800px;
+        height: 400px;
+      }
+
+      canvas {
+        border: 2px solid var(--border-color);
+        display: block;
+      }
+
+      .game-ui {
+        display: none;
+      }
+
+      .score {
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 24px;
+        z-index: 10;
+      }
+
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: var(--overlay-bg);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        border-radius: 5px;
+      }
+
+      .overlay h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+      
+      .overlay h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .overlay p {
+        font-size: 1rem;
+        line-height: 1.5;
+        max-width: 90%; /* Ajustado para mejor responsividad en desktop */
+      }
+
+      .overlay button {
+        padding: 12px 25px;
+        font-size: 1.2rem;
+        cursor: pointer;
+        border: 2px solid var(--text-color);
+        border-radius: 5px;
+        background-color: transparent;
+        color: var(--text-color);
+        transition: background-color 0.2s, color 0.2s;
+      }
+
+      .overlay button:hover {
+        background-color: var(--text-color);
+        color: var(--bg-color);
+      }
+      
+      #winnerMessage {
+        display: none;
+      }
+
+      #theme-toggle {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: none;
+        border: 1px solid var(--text-color);
+        color: var(--text-color);
+        cursor: pointer;
+        padding: 8px;
+        border-radius: 5px;
+        font-size: 1.2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="game-container">
+      <!-- Pantalla de Inicio -->
+      <div class="overlay" id="startScreen">
+        <h1>Ping Pong</h1>
+        <h2>Instrucciones</h2>
+        <p>
+          <b>Jugador 1:</b> Usa las teclas 'W' (arriba) y 'S' (abajo).<br />
+          <b>Jugador 2:</b> Usa las flechas '↑' (arriba) y '↓' (abajo).
+        </p>
+        <p>El primer jugador en alcanzar 10 puntos gana.</p>
+        <button id="startButton">Iniciar Juego</button>
+      </div>
+
+      <!-- Interfaz del Juego (oculta al inicio) -->
+      <div class="game-ui">
+        <div class="score">
+          Jugador 1: <span id="score1">0</span> | Jugador 2:
+          <span id="score2">0</span>
+        </div>
+        <canvas id="pongCanvas" width="800" height="400"></canvas>
+        <div class="overlay" id="winnerMessage">
+          <h1 id="winnerText"></h1>
+          <button id="restartButton">Reiniciar Juego</button>
+        </div>
+      </div>
+    </div>
+
+    <button id="theme-toggle">🌓</button>
+
+    <script>
+      // --- CONFIGURACIÓN INICIAL ---
+      const canvas = document.getElementById("pongCanvas");
+      const ctx = canvas.getContext("2d");
+
+      // Elementos de la UI
+      const startScreen = document.getElementById("startScreen");
+      const startButton = document.getElementById("startButton");
+      const gameUI = document.querySelector(".game-ui");
+      const winnerMessage = document.getElementById("winnerMessage");
+      const winnerText = document.getElementById("winnerText");
+      const restartButton = document.getElementById("restartButton");
+      const themeToggleButton = document.getElementById("theme-toggle");
+
+      // Variables del juego
+      const paddleWidth = 10;
+      const paddleHeight = 100;
+      const ballRadius = 10;
+      let paddle1Y, paddle2Y, ballX, ballY, ballSpeedX, ballSpeedY;
+      let score1 = 0;
+      let score2 = 0;
+      let gameRunning = false;
+      const paddleSpeed = 10;
+      let paddle1Direction = 0;
+      let paddle2Direction = 0;
+
+      // Sonidos (usando URLs que no expiran)
+      const soundPaddle = new Audio("https://cdn.jsdelivr.net/gh/jonmircha/frontend-challenges/assets/sounds/hit.wav");
+      const soundWall = new Audio("https://cdn.jsdelivr.net/gh/jonmircha/frontend-challenges/assets/sounds/wall.wav");
+      const soundWin = new Audio("https://cdn.jsdelivr.net/gh/jonmircha/frontend-challenges/assets/sounds/win.wav");
+
+      // --- LÓGICA DEL TEMA (DARK/LIGHT MODE) ---
+      function applyTheme(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+        localStorage.setItem("pongTheme", theme);
+      }
+
+      themeToggleButton.addEventListener("click", () => {
+        const currentTheme = document.documentElement.getAttribute("data-theme");
+        const newTheme = currentTheme === "dark" ? "light" : "dark";
+        applyTheme(newTheme);
+      });
+
+      // Aplicar tema guardado al cargar
+      document.addEventListener("DOMContentLoaded", () => {
+        const savedTheme = localStorage.getItem("pongTheme") || "dark";
+        applyTheme(savedTheme);
+      });
+
+      // --- LÓGICA DEL JUEGO ---
+      function initializeGame() {
+        paddle1Y = (canvas.height - paddleHeight) / 2;
+        paddle2Y = (canvas.height - paddleHeight) / 2;
+        score1 = 0;
+        score2 = 0;
+        updateScores();
+        resetBall();
+      }
+
+      function drawField() {
+        const theme = document.documentElement.getAttribute("data-theme");
+        const bgColor = theme === "dark" ? "#000" : "#f0f0f0";
+        const fgColor = theme === "dark" ? "#fff" : "#333";
+
+        ctx.fillStyle = bgColor;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.beginPath();
+        ctx.setLineDash([10, 10]);
+        ctx.strokeStyle = fgColor;
+        ctx.lineWidth = 2;
+        ctx.moveTo(canvas.width / 2, 0);
+        ctx.lineTo(canvas.width / 2, canvas.height);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.closePath();
+      }
+
+      function drawPaddle(x, y) {
+        const fgColor = document.documentElement.getAttribute("data-theme") === "dark" ? "#fff" : "#333";
+        ctx.fillStyle = fgColor;
+        ctx.fillRect(x, y, paddleWidth, paddleHeight);
+      }
+
+      function drawBall() {
+        const fgColor = document.documentElement.getAttribute("data-theme") === "dark" ? "#fff" : "#333";
+        ctx.beginPath();
+        ctx.arc(ballX, ballY, ballRadius, 0, Math.PI * 2);
+        ctx.fillStyle = fgColor;
+        ctx.fill();
+        ctx.closePath();
+      }
+
+      function moveBall() {
+        ballX += ballSpeedX;
+        ballY += ballSpeedY;
+
+        if (ballY - ballRadius <= 0 || ballY + ballRadius >= canvas.height) {
+          ballSpeedY = -ballSpeedY;
+          soundWall.play();
+        }
+
+        if (
+          (ballX - ballRadius <= paddleWidth && ballY > paddle1Y && ballY < paddle1Y + paddleHeight) ||
+          (ballX + ballRadius >= canvas.width - paddleWidth && ballY > paddle2Y && ballY < paddle2Y + paddleHeight)
+        ) {
+          ballSpeedX = -ballSpeedX;
+          soundPaddle.play();
+        }
+
+        if (ballX < 0) {
+          score2++;
+          checkWinner();
+          resetBall();
+        } else if (ballX > canvas.width) {
+          score1++;
+          checkWinner();
+          resetBall();
+        }
+      }
+
+      function movePaddles() {
+        paddle1Y += paddle1Direction * paddleSpeed;
+        paddle2Y += paddle2Direction * paddleSpeed;
+
+        if (paddle1Y < 0) paddle1Y = 0;
+        if (paddle1Y + paddleHeight > canvas.height) paddle1Y = canvas.height - paddleHeight;
+        if (paddle2Y < 0) paddle2Y = 0;
+        if (paddle2Y + paddleHeight > canvas.height) paddle2Y = canvas.height - paddleHeight;
+      }
+
+      function resetBall() {
+        ballX = canvas.width / 2;
+        ballY = canvas.height / 2;
+        ballSpeedX = Math.random() > 0.5 ? 5 : -5;
+        ballSpeedY = Math.random() > 0.5 ? 3 : -3;
+      }
+
+      function updateScores() {
+        document.getElementById("score1").innerText = score1;
+        document.getElementById("score2").innerText = score2;
+      }
+
+      function checkWinner() {
+        if (score1 === 10 || score2 === 10) {
+          gameRunning = false;
+          soundWin.play();
+          winnerText.innerText = score1 === 10 ? "¡Jugador 1 Gana!" : "¡Jugador 2 Gana!";
+          winnerMessage.style.display = "flex";
+        }
+      }
+
+      function gameLoop() {
+        if (!gameRunning) return;
+        drawField();
+        drawPaddle(0, paddle1Y);
+        drawPaddle(canvas.width - paddleWidth, paddle2Y);
+        drawBall();
+        moveBall();
+        movePaddles();
+        updateScores();
+        requestAnimationFrame(gameLoop);
+      }
+
+      // --- MANEJO DE EVENTOS ---
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "w") paddle1Direction = -1;
+        if (e.key === "s") paddle1Direction = 1;
+        if (e.key === "ArrowUp") paddle2Direction = -1;
+        if (e.key === "ArrowDown") paddle2Direction = 1;
+      });
+
+      document.addEventListener("keyup", (e) => {
+        if (e.key === "w" || e.key === "s") paddle1Direction = 0;
+        if (e.key === "ArrowUp" || e.key === "ArrowDown") paddle2Direction = 0;
+      });
+
+      startButton.addEventListener("click", () => {
+        startScreen.style.display = "none";
+        gameUI.style.display = "block";
+        initializeGame();
+        gameRunning = true;
+        gameLoop();
+      });
+
+      restartButton.addEventListener("click", () => {
+        winnerMessage.style.display = "none";
+        initializeGame();
+        gameRunning = true;
+        gameLoop();
+      });
+    </script>
+  </body>
+</html>
